@@ -13,4 +13,5 @@ except AssertionError as error:
 # connection successful
 else:
     blink.fast()
+    sensor.connect()
     sensor.sense()

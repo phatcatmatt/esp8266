@@ -5,8 +5,13 @@ from umqtt.simple import MQTTClient
 btn = Pin(14, Pin.IN, Pin.PULL_UP)
 led = Pin(15, Pin.OUT)
 
+
 client = MQTTClient('inner-sanctum', '192.168.1.248')
-client.connect()
+
+
+def connect():
+    client.connect()
+
 
 status = ''
 available = 1
