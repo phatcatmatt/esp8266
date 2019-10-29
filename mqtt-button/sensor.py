@@ -12,10 +12,12 @@ status = ''
 available = 1
 occupied = 0
 
-while True:
-    led.value(btn.value())
-    if btn.value() == available:
-        client.publish('ibs', 'OPEN')
-    else:
-        client.publish('ibs', 'CLOSED')
-    sleep(2)
+
+def sense():
+    while True:
+        led.value(not btn.value())
+        if btn.value() == available:
+            client.publish('ibs', 'OPEN')
+        else:
+            client.publish('ibs', 'CLOSED')
+        sleep(2)
