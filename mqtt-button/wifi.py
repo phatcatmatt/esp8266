@@ -13,4 +13,4 @@ def connect():
     sta_if.active(True)
     sta_if.connect(ssid, password)
     time.sleep(5)
-    assert (sta_if.isconnected()), sta_if.status()
+    assert sta_if.isconnected(), sta_if.status()

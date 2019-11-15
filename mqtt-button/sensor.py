@@ -5,24 +5,32 @@ from umqtt.simple import MQTTClient
 btn = Pin(14, Pin.IN, Pin.PULL_UP)
 led = Pin(15, Pin.OUT)
 
+state = ''
+OPEN = 1
+CLOSED = 0
 
 client = MQTTClient('inner-sanctum', '192.168.1.248')
 
 
 def connect():
     client.connect()
+    # assert client.connect()
 
 
-status = ''
-available = 1
-occupied = 0
+def wait():
+    global state
 
-
-def sense():
     while True:
+        # set LED opposite of button
         led.value(not btn.value())
-        if btn.value() == available:
-            client.publish('ibs', 'OPEN')
+        print(btn.value())
+        if btn.value() == state:
+            client.publish('ibs', 'PING')
         else:
-            client.publish('ibs', 'CLOSED')
-        sleep(2)
+            if btn.value() == OPEN:
+                client.publish('ibs', 'OPEN')
+                state = OPEN
+            else:
+                client.publish('ibs', 'CLOSED')
+                state = CLOSED
+        sleep(1)
