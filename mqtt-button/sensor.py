@@ -21,16 +21,16 @@ def wait():
     global state
 
     while True:
+        btnStatus = btn.value()
         # set LED opposite of button
-        led.value(not btn.value())
-        print(btn.value())
-        if btn.value() == state:
-            client.publish('ibs', 'PING')
+        led.value(not btnStatus)
+        print(btnStatus)
+        if btnStatus == state:
+            pass
+        elif btnStatus == OPEN:
+            client.publish('ibs', 'OPEN')
+            state = OPEN
         else:
-            if btn.value() == OPEN:
-                client.publish('ibs', 'OPEN')
-                state = OPEN
-            else:
-                client.publish('ibs', 'CLOSED')
-                state = CLOSED
+            client.publish('ibs', 'CLOSED')
+            state = CLOSED
         sleep(1)

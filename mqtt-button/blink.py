@@ -14,7 +14,7 @@ def slow():
 
 
 def fast():
-    for _ in range(10):
+    for _ in range(5):
         led.value(not led.value())
         sleep(.1)
         led.value(not led.value())
