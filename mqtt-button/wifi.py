@@ -1,7 +1,6 @@
 import network
 from machine import Pin
 import time
-import blink
 import secrets
 
 ssid = secrets.ssid
