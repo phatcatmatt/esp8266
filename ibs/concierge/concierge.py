@@ -1,3 +1,7 @@
+# this is technically neither a server nor a broker
+# the MQTT broker runs as a daemon when the pi boots
+# this is just a client that subscribes to the topic and listens
+
 import paho.mqtt.client as mqtt
 import blinky
 
